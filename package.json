@@ -26,10 +26,13 @@
     "eslint": "eslint --cache --ext .js,.jsx ./",
     "stylelint": "stylelint ./**/*.scss"
   },
+  "author": {
+    "name": "何遇",
+    "email": "1395294694@qq.com"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/ice-lab/react-materials/tree/master/scaffolds/antd-lite"
   },
-  "private": true,
   "originTemplate": "@icedesign/ice-antd-scaffold"
 }
