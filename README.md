@@ -23,7 +23,7 @@ $ npm start  # visit http://localhost:3333
 │   └── favicon.png                # Favicon
 ├── src/                           # 源码路径
 │   ├── components/                # 自定义业务组件
-│   │   └── Guide/
+│   │   └── NotFound/
 │   │       ├── index.[j,t]sx
 │   │       ├── index.module.scss
 │   ├── layouts/                   # 布局组件
