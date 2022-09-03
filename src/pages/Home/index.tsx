@@ -1,14 +1,12 @@
 import { useEffect } from 'react';
-import { useRequest } from 'ice';
+import { useRequest, config } from 'ice';
 import { Table } from 'antd';
 import styles from './index.module.css';
 
 export default function Home() {
-  const { data, error, loading, request: fetchRepos } = useRequest({ url: '/api/getRepos' });
-  const { dataSource = [] } = data || {};
+  const { data: dataSource, error, loading, request: fetchRepos } = useRequest({ url: '/user/get' });
 
   useEffect(() => {
-    console.log('Home useEffect....');
     (async function () {
       await fetchRepos();
     }());

@@ -1,4 +1,4 @@
-import { runApp, IAppConfig } from 'ice';
+import { runApp, IAppConfig, config } from 'ice';
 
 const appConfig: IAppConfig = {
   app: {
@@ -6,6 +6,9 @@ const appConfig: IAppConfig = {
   },
   router: {
     type: 'hash',
+  },
+  request: {
+    baseURL: config.baseURL,
   },
 };
 

@@ -2,8 +2,7 @@
   "vite": true,
   "externals": {
     "react": "window.React",
-    "react-dom": "window.ReactDOM",
-    "vitis-lowcode-warningtext": "window.vitisLowcodeWarningtext"
+    "react-dom": "window.ReactDOM"
   },
   "plugins": [
     [
