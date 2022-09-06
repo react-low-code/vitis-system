@@ -1,17 +1,16 @@
 import { useEffect } from 'react';
-import { useRequest, config } from 'ice';
+import { useRequest } from 'ice';
 import { Table } from 'antd';
 import styles from './index.module.css';
 
 export default function Home() {
-  const { data: dataSource, error, loading, request: fetchRepos } = useRequest({ url: '/user/get' });
+  const { data, error, loading, request: fetchRepos } = useRequest({ url: '/user/list' });
 
   useEffect(() => {
     (async function () {
       await fetchRepos();
     }());
   }, []);
-
   return (
     <div className={styles.container}>
       <h2>Home page</h2>
@@ -21,7 +20,7 @@ export default function Home() {
         ) : (
           <Table
             loading={loading}
-            dataSource={dataSource}
+            dataSource={(data || {}).data || []}
             rowKey="id"
           >
             <Table.Column title="ID" dataIndex="id" key="id" />

@@ -4,6 +4,7 @@ import Layout from '@/Layouts/BasicLayout';
 const Home = lazy(() => import('@/pages/Home'));
 const NotFound = lazy(() => import('@/components/NotFound'));
 const Login = lazy(() => import('@/pages/Login'));
+const UserList = lazy(() => import('@/pages/UserList'));
 
 const routerConfig: IRouterConfig[] = [
   {
@@ -13,13 +14,21 @@ const routerConfig: IRouterConfig[] = [
   {
     path: '/',
     component: Layout,
-    children: [{
-      path: '/',
-      exact: true,
-      component: Home,
-    }, {
-      component: NotFound,
-    }],
+    children: [
+      {
+        path: '/',
+        exact: true,
+        component: Home,
+      },
+      {
+        path: '/user',
+        exact: true,
+        component: UserList,
+      },
+      {
+        component: NotFound,
+      },
+    ],
   },
 ];
 
