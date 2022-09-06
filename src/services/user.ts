@@ -32,9 +32,17 @@ export async function addUser(data: FormUser) {
   });
 }
 
-export async function updateUser(data: Pick<User, 'editable' | 'releasable' | 'account'>) {
+export async function updateUser(data: User) {
   return await request<null>({
     url: '/user/update',
+    method: 'POST',
+    data,
+  });
+}
+
+export async function login(data: Pick<FormUser, 'account'|'password'>) {
+  return await request<unknown>({
+    url: '/login',
     method: 'POST',
     data,
   });
