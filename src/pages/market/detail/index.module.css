@@ -1,0 +1,14 @@
+.docIframe {
+    width: 100%;
+    border: none;
+    height: 520px;
+    margin-top: 20px;
+}
+
+.hidden {
+    display: none;
+}
+
+.picker {
+    text-align: right;
+}

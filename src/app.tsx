@@ -26,16 +26,17 @@ const appConfig: IAppConfig = {
       },
       response: {
         onConfig: (response) => {
-          if (response.data.code !== '0') {
-            message.error(response.data.msg);
-          }
-
           if (response.data.code === '0004') {
             location.hash = '#/login';
           }
 
           if (response.data.data?.token) {
             saveToken(response.data.data.token);
+          }
+
+          if (response.data.code !== '0') {
+            message.error(response.data.msg);
+            return Promise.reject(response.data.msg);
           }
           return response.data;
         },

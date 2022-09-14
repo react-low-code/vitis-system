@@ -5,10 +5,13 @@
   "dependencies": {
     "@ant-design/icons": "^4.0.2",
     "@ant-design/pro-layout": "^6.5.1",
+    "@types/qs": "^6.9.7",
     "antd": "^4.0.0",
+    "crypto-random-string": "^5.0.0",
     "moment": "^2.24.0",
     "prop-types": "^15.5.8",
-    "crypto-random-string": "^5.0.0"
+    "qs": "^6.11.0",
+    "classnames": "^2.3.2"
   },
   "devDependencies": {
     "@iceworks/spec": "^1.0.1",

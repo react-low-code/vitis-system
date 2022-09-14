@@ -1,10 +1,15 @@
-import { SmileOutlined, TeamOutlined } from '@ant-design/icons';
+import { SmileOutlined, TeamOutlined, AppstoreOutlined } from '@ant-design/icons';
 
 const asideMenuConfig = [
   {
     name: 'home',
     path: '/',
     icon: SmileOutlined,
+  },
+  {
+    name: '组件市场',
+    path: '/market/list',
+    icon: AppstoreOutlined,
   },
   {
     name: '用户',

@@ -5,6 +5,8 @@ const Home = lazy(() => import('@/pages/Home'));
 const NotFound = lazy(() => import('@/components/NotFound'));
 const Login = lazy(() => import('@/pages/Login'));
 const UserList = lazy(() => import('@/pages/UserList'));
+const Components = lazy(() => import('@/pages/market/list'));
+const ComponentDetail = lazy(() => import('@/pages/market/detail'))
 
 const routerConfig: IRouterConfig[] = [
   {
@@ -19,6 +21,16 @@ const routerConfig: IRouterConfig[] = [
         path: '/',
         exact: true,
         component: Home,
+      },
+      {
+        path: '/market/list',
+        exact: true,
+        component: Components,
+      },
+      {
+        path: '/market/detail',
+        exact: true,
+        component: ComponentDetail,
       },
       {
         path: '/user',
