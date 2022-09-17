@@ -21,3 +21,18 @@ export async function pickComponent(data: ComponentBaseInfo & {BUName: string}) 
     data,
   });
 }
+
+export async function getComponents(BUName: string) {
+  return await request<ComponentBaseInfo[]>({
+    url: '/businessUnit/components?BUName=' + BUName,
+    method: 'GET',
+  });
+}
+
+export async function updateComponent(data: ComponentBaseInfo & {BUName: string}) {
+  return await request<null>({
+    url: '/businessUnit/update/component/version',
+    method: 'POST',
+    data,
+  });
+}

@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from 'react'
 import { useLocation, useRequest } from 'ice';
 import { Select, Button, message } from 'antd'
 import { getComponentDetail, Component } from '@/services/market';
-import { pickComponent } from '@/services/businessUnit'
+import { pickComponent, updateComponent } from '@/services/businessUnit'
 import PickBUModal from './PickBUModal'
 
 import qs from 'qs';
@@ -17,15 +17,17 @@ export default function () {
   const [loading, setLoading] = useState<boolean>(false);
   const [version, setVersion] = useState<string>();
   const [open, setOpen] = useState<boolean>(false);
+  const [BUName, setBUName] = useState<string>();
   const location = useLocation();
   const iframeRef = useRef<HTMLIFrameElement>(null);
   useEffect(() => {
     const params = qs.parse(location.search.slice(1)) as any;
+    setBUName(params.BUName || '');
     (async () => {
       setLoading(true);
       const result = await request(params.packageName);
       setData(result);
-      setVersion(result.latest);
+      setVersion(params.version || result.latest);
     })();
   }, [location.search]);
 
@@ -37,8 +39,19 @@ export default function () {
     setVersion(value);
   };
 
-  const onWillPick = () => {
-    setOpen(true);
+  const onWillPick = async () => {
+    if (!BUName) {
+      setOpen(true);
+    } else {
+      if (!data) return;
+
+      await updateComponent({
+        ...data,
+        version: version!,
+        BUName: BUName!,
+      });
+      message.success('更新成功');
+    }
   };
 
   const onClose = () => {
@@ -67,7 +80,7 @@ export default function () {
             <Select value={version} onChange={onChange}>
               {data?.versions.map((item) => <Option value={item}>{item}</Option>)}
             </Select>
-            <Button type="primary" style={{marginLeft: '20px'}} onClick={onWillPick}>选取到</Button>
+            <Button type="primary" style={{marginLeft: '20px'}} onClick={onWillPick}>{BUName ? '更新到' + BUName : '选取到'}</Button>
           </div>
           <iframe
             src={docUrl}

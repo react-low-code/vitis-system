@@ -7,6 +7,7 @@ import styles from './index.module.css';
 interface Props {
   onSelect: (BUName: string) => void;
   BUName?: string;
+  autoSelect?: boolean;
 }
 
 export default function (props: Props) {
@@ -14,6 +15,9 @@ export default function (props: Props) {
 
   useEffect(() => {
     getAllBU().then((resData) => {
+      if (!props.BUName && props.autoSelect) {
+        onSelect(resData[0]?.name)();
+      }
       setList(resData);
     });
   }, []);

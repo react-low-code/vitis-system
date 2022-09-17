@@ -1,4 +1,14 @@
 .container {
-  width: 100%;
-  padding: 20px;
+  display: flex;
+  position: relative;
+}
+
+.left {
+  width: 200px;
+  background-color: #fff;
+}
+
+.main {
+  flex: 1;
+  margin-left: 10px;
 }

@@ -3,3 +3,7 @@
 body {
   -webkit-font-smoothing: antialiased;
 }
+
+.ant-pro-basicLayout-content {
+  margin: 12px !important;
+}

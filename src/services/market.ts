@@ -27,3 +27,7 @@ export async function getAllComponents(page: number, pageSize: number) {
 export async function getComponentDetail(packageName: string) {
   return await request<Component>('/marketComponent/detail?packageName=' + packageName);
 }
+
+export async function getComponentVersion(packageName: string) {
+  return await request<string[]>('/marketComponent/versions?packageName=' + packageName);
+}
