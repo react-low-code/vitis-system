@@ -2,10 +2,11 @@ import { useEffect, useState } from 'react';
 import { useRequest, useHistory } from 'ice';
 import { Button, Table, Tabs } from 'antd';
 import BUList from '@/components/BUList';
-import { getApplications } from '@/services/applications';
+import { getApplications, ApplicationInfo } from '@/services/applications';
 import { getComponents } from '@/services/businessUnit';
 import { ComponentBaseInfo } from '@/services/market';
-import VersionsModel from './versionsModel'
+import VersionsModel from './versionsModel';
+import HistoryModel from './historyModel';
 
 import styles from './index.module.css';
 
@@ -17,6 +18,9 @@ export default function Home() {
   const [BUName, setBUName] = useState<string>();
   const [openVersion, setOpenVersion] = useState<boolean>(false);
   const [currentCompon, setCurrentCompon] = useState<ComponentBaseInfo>();
+  const [openHistory, setOpenHistory] = useState<boolean>(false);
+  const [appId, setAppId] = useState<string>();
+  const [commitHash, setCommitHash] = useState<string | null>();
 
   useEffect(() => {
     if (BUName) {
@@ -35,9 +39,19 @@ export default function Home() {
     setCurrentCompon(Compon);
   };
 
-  const openCloseVersion = () => {
+  const onCloseVersion = () => {
     setOpenVersion(false);
   };
+
+  const onOpenHistory = (id: string, hash: string | null) => {
+    setOpenHistory(true);
+    setAppId(id);
+    setCommitHash(hash)
+  }
+
+  const onCloseHistory = () => {
+    setOpenHistory(false)
+  }
 
   return (
     <div className={styles.container}>
@@ -61,9 +75,9 @@ export default function Home() {
               <Table.Column
                 title="操作"
                 key="action"
-                render={() => (
+                render={(_, record: ApplicationInfo) => (
                   <>
-                    <Button type="link" size="small">版本记录</Button>
+                    <Button type="link" size="small" onClick={() => onOpenHistory(record._id, record.releasedSchemaCommitId)}>版本记录</Button>
                   </>
                 )}
               />
@@ -90,12 +104,15 @@ export default function Home() {
       </div>
       {openVersion && BUName && currentCompon &&
       <VersionsModel
-        onClose={openCloseVersion}
+        onClose={onCloseVersion}
         onFresh={() => fetchComponents(BUName)}
         component={currentCompon}
         defaultVersion={currentCompon.version}
         BUName={BUName}
       />}
+      {openHistory && appId &&
+      <HistoryModel appId={appId} onClose={onCloseHistory} commitHash={commitHash} />
+      }
     </div>
   );
 }

@@ -1,6 +1,6 @@
 import { request } from 'ice';
 
-interface History {
+export interface History {
     user: string;
     parentCommitId?: string;
     time: string;
@@ -11,7 +11,8 @@ interface History {
     branch: string;
 }
 
-interface ApplicationInfo {
+export interface ApplicationInfo {
+    _id: string;
     name: string;
     desc: string;
     released: boolean;
@@ -27,4 +28,11 @@ export async function getApplications(BUName: string) {
     url: '/application/list?BUName=' + BUName,
     method: 'GET',
   });
+}
+
+export async function getHistory(appId: string) {
+    return await request<History[]>({
+        url: '/application/histories?id=' + appId,
+        method: 'GET',
+    });
 }
