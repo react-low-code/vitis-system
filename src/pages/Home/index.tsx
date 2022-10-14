@@ -7,6 +7,7 @@ import { getComponents } from '@/services/businessUnit';
 import { ComponentBaseInfo } from '@/services/market';
 import VersionsModel from './versionsModel';
 import HistoryModel from './historyModel';
+import AddAppModel from './addAppModel';
 
 import styles from './index.module.css';
 
@@ -21,6 +22,7 @@ export default function Home() {
   const [openHistory, setOpenHistory] = useState<boolean>(false);
   const [appId, setAppId] = useState<string>();
   const [commitHash, setCommitHash] = useState<string | null>();
+  const [openAddApp, setOpenAddApp] = useState<boolean>(false);
 
   useEffect(() => {
     if (BUName) {
@@ -53,12 +55,26 @@ export default function Home() {
     setOpenHistory(false)
   }
 
+  const onOpenAddApp = () => {
+    setOpenAddApp(true)
+  }
+
+  const onCloseAddApp = () => {
+    setOpenAddApp(false)
+  }
+
   return (
     <div className={styles.container}>
       <div className={styles.left}>
         <BUList BUName={BUName} onSelect={onSelectBUName} autoSelect />
       </div>
-      <Button type="primary" style={{right: '10px', top: '10px', position: 'absolute'}}>新建应用</Button>
+      <Button
+        type="primary"
+        style={{right: '10px', top: '10px', position: 'absolute', zIndex: 2}}
+        onClick={onOpenAddApp}
+      >
+        新建应用
+      </Button>
       <div className={styles.main}>
         <Tabs>
           <Tabs.TabPane tab="应用" key="app">
@@ -113,6 +129,7 @@ export default function Home() {
       {openHistory && appId &&
       <HistoryModel appId={appId} onClose={onCloseHistory} commitHash={commitHash} />
       }
+      {BUName && <AddAppModel open={openAddApp} BUName={BUName} onClose={onCloseAddApp} />}
     </div>
   );
 }
