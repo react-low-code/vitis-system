@@ -1,5 +1,7 @@
 import React from 'react'
+import { observer } from 'mobx-react';
+import rootStore from '@/stores';
 
-export default function () {
-  return <div>编辑应用</div>
-}
+export default observer(() => {
+  return <div>编辑应用{rootStore.app.appName}</div>
+})

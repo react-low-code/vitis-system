@@ -11,7 +11,9 @@
     "moment": "^2.24.0",
     "prop-types": "^15.5.8",
     "qs": "^6.11.0",
-    "classnames": "^2.3.2"
+    "classnames": "^2.3.2",
+    "mobx": "^6.5.0",
+    "mobx-react": "^7.3.0"
   },
   "devDependencies": {
     "@iceworks/spec": "^1.0.1",
@@ -37,5 +39,8 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/react-low-code/vitis-system.git"
+  },
+  "engines": {
+    "node": "==14.17.0"
   }
 }

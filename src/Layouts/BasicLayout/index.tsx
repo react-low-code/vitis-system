@@ -13,7 +13,7 @@ const loopMenuItem = (menus) =>
 export default function BasicLayout({ children, location }) {
   return (
     <ProLayout
-      title="vitis 低代码系统"
+      title="vitis"
       logo={false}
       style={{
         minHeight: '100vh',

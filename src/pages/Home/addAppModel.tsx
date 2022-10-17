@@ -1,6 +1,9 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Modal, Input, message } from 'antd';
 import { useHistory } from 'ice';
+import { observer } from 'mobx-react';
+
+import rootStore from '@/stores';
 
 interface Props {
   onClose: () => void;
@@ -8,17 +11,23 @@ interface Props {
   open: boolean;
 }
 
-export default function (props: Props) {
-  const [appName, setAppName] = useState<string>();
+export default observer((props: Props) => {
   const history = useHistory();
   const [inputStatus, setInputStatus] = useState<'error' | 'warning'>();
+  useEffect(() => {
+    rootStore.app.changeAppName(undefined);
+    rootStore.app.changeAppId(undefined);
+    rootStore.app.changeBUName(undefined);
+  }, []);
 
   const onChangeAppName = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setAppName(e.target.value);
+    rootStore.app.changeAppName(e.target.value)
     setInputStatus(undefined);
   };
   const onOk = () => {
-    if (appName) {
+    if (rootStore.app.appName) {
+      rootStore.app.changeBUName(props.BUName);
+      rootStore.app.changeAppId(undefined);
       history.push('/app/edit');
     } else {
       message.warning('输入应用名');
@@ -34,7 +43,7 @@ export default function (props: Props) {
       onOk={onOk}
       closable={false}
     >
-      <Input value={appName} onChange={onChangeAppName} placeholder="请输入" addonBefore="应用名" status={inputStatus} />
+      <Input value={rootStore.app.appName} onChange={onChangeAppName} placeholder="请输入" addonBefore="应用名" status={inputStatus} />
     </Modal>
   );
-}
+});
