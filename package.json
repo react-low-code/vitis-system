@@ -41,6 +41,6 @@
     "url": "https://github.com/react-low-code/vitis-system.git"
   },
   "engines": {
-    "node": "==14.17.0"
+    "node": ">=14.17.0 <16"
   }
 }
