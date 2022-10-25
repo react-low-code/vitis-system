@@ -1,7 +1,12 @@
-import React from 'react'
+import { useRef, useEffect } from 'react'
 import { observer } from 'mobx-react';
-import rootStore from '@/stores';
+import engine from 'vitis-lowcode-engine'
 
 export default observer(() => {
-  return <div>编辑应用{rootStore.app.appName}</div>
+  const container = useRef<HTMLDivElement>(null)
+  useEffect(() => {
+    engine.init(container.current)
+  }, []);
+
+  return <div ref={container} />
 })

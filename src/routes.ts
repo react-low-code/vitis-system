@@ -15,6 +15,11 @@ const routerConfig: IRouterConfig[] = [
     component: Login,
   },
   {
+    path: '/app/edit',
+    exact: true,
+    component: EditApp,
+  },
+  {
     path: '/',
     component: Layout,
     children: [
@@ -37,11 +42,6 @@ const routerConfig: IRouterConfig[] = [
         path: '/user',
         exact: true,
         component: UserList,
-      },
-      {
-        path: '/app/edit',
-        exact: true,
-        component: EditApp,
       },
       {
         component: NotFound,

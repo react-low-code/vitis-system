@@ -2,7 +2,8 @@
   "vite": true,
   "externals": {
     "react": "window.React",
-    "react-dom": "window.ReactDOM"
+    "react-dom": "window.ReactDOM",
+    "vitis-lowcode-engine": "window.VitisLowCodeEngine"
   },
   "plugins": [
     [
