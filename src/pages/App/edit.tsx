@@ -8,5 +8,5 @@ export default observer(() => {
     engine.init(container.current)
   }, []);
 
-  return <div ref={container} />
+  return <div ref={container} style={{height: '100%'}} >ddd</div>
 })

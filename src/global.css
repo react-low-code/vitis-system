@@ -7,3 +7,7 @@ body {
 .ant-pro-basicLayout-content {
   margin: 12px !important;
 }
+
+#ice-container {
+  height: 100%;
+}
