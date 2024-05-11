@@ -7,7 +7,7 @@ import stores from '../../stores'
 export default observer(() => {
   const container = useRef<HTMLDivElement>(null)
   useEffect(() => {
-    engine.init(container.current);
+    engine.init(container.current!);
     (async () => {
       if (stores.app.BUName) {
         const result = await getComponents(stores.app.BUName);
@@ -16,5 +16,5 @@ export default observer(() => {
     })();
   }, []);
 
-  return <div ref={container} style={{height: '100%'}} >ddd</div>
+  return <div ref={container} style={{ height: '100%' }} />;
 })

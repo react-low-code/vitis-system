@@ -13,6 +13,7 @@ interface Props {
 
 export default observer((props: Props) => {
   const [inputStatus, setInputStatus] = useState<'error' | 'warning'>();
+  const history = useHistory()
   useEffect(() => {
     rootStore.app.changeAppName(undefined);
     rootStore.app.changeAppId(undefined);
@@ -26,8 +27,7 @@ export default observer((props: Props) => {
   const onOk = () => {
     if (rootStore.app.appName) {
       rootStore.app.changeBUName(props.BUName);
-      rootStore.app.changeAppId(undefined);
-      window.open(`${location.origin}/#/app/edit`, '_blank')
+      history.push('/app/edit')
     } else {
       message.warning('输入应用名');
       setInputStatus('error');
