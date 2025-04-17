@@ -14,6 +14,17 @@ export async function getAllBU() {
   return await request<BusinessUnitInfo[]>('/businessUnit/list');
 }
 
+export async function addBu(data: {
+  desc: string;
+  BUName: string;
+}) {
+  return await request<boolean>({
+    url: '/businessUnit/add',
+    method: 'POST',
+    data,
+  });
+}
+
 export async function pickComponent(data: ComponentBaseInfo & {BUName: string}) {
   return await request<null>({
     url: '/businessUnit/pick/component',

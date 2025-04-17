@@ -43,11 +43,11 @@ export default function (props: Props) {
             dataIndex="user"
             key="user"
             width="200px"
-            render={(_, record: History) => <>
-                <Button type="link" size='small'>预览</Button>
-                <Button type="link" size='small'>编辑</Button>
-                {record.commitId !== props.commitHash && <Button type="link" size='small'>发布</Button>}
-            </>}
+            render={(_, record: History) => (<>
+              <Button type="link" size="small">预览</Button>
+              <Button type="link" size="small">编辑</Button>
+              {record.commitId !== props.commitHash && <Button type="link" size="small">发布</Button>}
+            </>)}
           />
         </Table>
       </div>
